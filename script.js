@@ -170,10 +170,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Mathematics rendering check
-    if (typeof MathJax !== 'undefined') {
+    if (typeof MathJax !== 'undefined' && MathJax.startup) {
         MathJax.startup.promise.then(() => {
             console.log('MathJax loaded successfully');
+        }).catch(() => {
+            console.log('MathJax failed to load, math expressions may not render');
         });
+    } else {
+        console.log('MathJax not available, math expressions may not render');
     }
 
     // Add copy to clipboard functionality for email
@@ -206,4 +210,245 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Notes System
+    initializeNotesSystem();
 });
+
+// Notes System Implementation
+function initializeNotesSystem() {
+    let notesData = [];
+    let filteredNotes = [];
+
+    // Load notes metadata
+    fetch('notes.json')
+        .then(response => response.json())
+        .then(data => {
+            notesData = data;
+            filteredNotes = [...notesData];
+            displayNotes(filteredNotes);
+            setupNotesControls();
+        })
+        .catch(error => {
+            console.error('Error loading notes:', error);
+            document.getElementById('notes-grid').innerHTML = 
+                '<div class="no-notes">Failed to load notes. Please try again later.</div>';
+        });
+
+    function displayNotes(notes) {
+        const notesGrid = document.getElementById('notes-grid');
+        
+        if (notes.length === 0) {
+            notesGrid.innerHTML = '<div class="no-notes">No notes found matching your criteria.</div>';
+            return;
+        }
+
+        notesGrid.innerHTML = notes.map(note => `
+            <div class="note-card" onclick="openNote('${note.file}', '${note.title}')">
+                <h3>${note.title}</h3>
+                <p>${note.description}</p>
+                <div class="note-tags">
+                    ${note.tags.map(tag => `<span class="note-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="note-meta">
+                    <span class="note-category">${getCategoryName(note.category)}</span>
+                    <span class="note-date">${formatDate(note.date)}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function setupNotesControls() {
+        const searchInput = document.getElementById('notes-search');
+        const filterSelect = document.getElementById('notes-filter');
+
+        searchInput.addEventListener('input', debounce(filterNotes, 300));
+        filterSelect.addEventListener('change', filterNotes);
+
+        function filterNotes() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = filterSelect.value;
+
+            filteredNotes = notesData.filter(note => {
+                const matchesSearch = note.title.toLowerCase().includes(searchTerm) ||
+                                    note.description.toLowerCase().includes(searchTerm) ||
+                                    note.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                
+                const matchesCategory = selectedCategory === 'all' || note.category === selectedCategory;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            displayNotes(filteredNotes);
+        }
+    }
+
+    function getCategoryName(category) {
+        const categoryMap = {
+            'analysis': 'Mathematical Analysis',
+            'algorithms': 'Algorithms',
+            'tutorials': 'Tutorials',
+            'research': 'Research Notes'
+        };
+        return categoryMap[category] || category;
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+    }
+}
+
+function openNote(filePath, title) {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('note-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'note-modal';
+        modal.className = 'note-modal';
+        modal.innerHTML = `
+            <div class="note-modal-content">
+                <div class="note-modal-header">
+                    <span class="close">&times;</span>
+                    <h2 id="note-modal-title">${title}</h2>
+                </div>
+                <div class="note-modal-body" id="note-modal-body">
+                    <div class="loading">Loading note content...</div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Setup close functionality
+        const closeBtn = modal.querySelector('.close');
+        closeBtn.onclick = () => modal.style.display = 'none';
+        
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    // Update title
+    document.getElementById('note-modal-title').textContent = title;
+    
+    // Show modal
+    modal.style.display = 'block';
+
+    // Load and render markdown content
+    fetch(filePath)
+        .then(response => response.text())
+        .then(markdown => {
+            const html = simpleMarkdownToHtml(markdown);
+            document.getElementById('note-modal-body').innerHTML = html;
+            
+            // Re-render MathJax if available
+            if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                MathJax.typesetPromise([document.getElementById('note-modal-body')]);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading note:', error);
+            document.getElementById('note-modal-body').innerHTML = 
+                '<p>Failed to load note content. Please try again later.</p>';
+        });
+}
+
+// Simple markdown to HTML converter
+function simpleMarkdownToHtml(markdown) {
+    let html = markdown;
+    
+    // Headers
+    html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+    html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+    html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+    
+    // Bold
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // Italic
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    
+    // Code blocks
+    html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+    
+    // Inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // Links
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    
+    // Tables
+    html = html.replace(/\|(.+)\|\n\|([|\-\s]+)\|\n((?:\|.+\|\n?)*)/g, function(match, header, separator, rows) {
+        let tableHtml = '<table><thead><tr>';
+        header.split('|').forEach(cell => {
+            if (cell.trim()) {
+                tableHtml += '<th>' + cell.trim() + '</th>';
+            }
+        });
+        tableHtml += '</tr></thead><tbody>';
+        
+        rows.split('\n').forEach(row => {
+            if (row.trim()) {
+                tableHtml += '<tr>';
+                row.split('|').forEach(cell => {
+                    if (cell.trim()) {
+                        tableHtml += '<td>' + cell.trim() + '</td>';
+                    }
+                });
+                tableHtml += '</tr>';
+            }
+        });
+        
+        tableHtml += '</tbody></table>';
+        return tableHtml;
+    });
+    
+    // Lists
+    html = html.replace(/^\d+\. (.+$)/gim, '<li>$1</li>');
+    html = html.replace(/^[\-\*] (.+$)/gim, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+    html = html.replace(/<\/ul>\s*<ul>/g, '');
+    
+    // Paragraphs
+    html = html.replace(/\n\n/g, '</p><p>');
+    html = '<p>' + html + '</p>';
+    
+    // Clean up empty paragraphs and fix math expressions
+    html = html.replace(/<p><\/p>/g, '');
+    html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+    html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+    html = html.replace(/<p>(<ul>)/g, '$1');
+    html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+    html = html.replace(/<p>(<table>)/g, '$1');
+    html = html.replace(/(<\/table>)<\/p>/g, '$1');
+    html = html.replace(/<p>(<pre>)/g, '$1');
+    html = html.replace(/(<\/pre>)<\/p>/g, '$1');
+    
+    return html;
+}
+
+// Utility function for debouncing search input
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}

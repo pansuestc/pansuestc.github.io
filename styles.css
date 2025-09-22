@@ -264,6 +264,242 @@ section h2 {
     margin-bottom: 1rem;
 }
 
+/* Notes Section */
+.notes {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.notes-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.notes-content > p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.notes-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.search-input, .filter-select {
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-input {
+    min-width: 300px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.filter-select {
+    min-width: 180px;
+    background: white;
+    cursor: pointer;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.note-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-left: 4px solid #3498db;
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.note-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.note-card p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.note-category {
+    background: #3498db;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.note-date {
+    font-style: italic;
+}
+
+.note-tags {
+    margin-top: 1rem;
+}
+
+.note-tag {
+    display: inline-block;
+    background: #ecf0f1;
+    color: #555;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-style: italic;
+}
+
+.no-notes {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Note Modal */
+.note-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.note-modal-content {
+    position: relative;
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-modal-header {
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.note-modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
+    line-height: 1.7;
+}
+
+.note-modal-body h1,
+.note-modal-body h2,
+.note-modal-body h3 {
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.note-modal-body h1 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+.note-modal-body p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.note-modal-body pre {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border-left: 4px solid #3498db;
+}
+
+.note-modal-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.note-modal-body th,
+.note-modal-body td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.note-modal-body th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.close {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
 /* Contact Section */
 .contact {
     background: #2c3e50;
@@ -368,6 +604,43 @@ footer {
 
     .research-grid {
         grid-template-columns: 1fr;
+    }
+
+    .notes-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-input {
+        min-width: 280px;
+        width: 100%;
+        max-width: none;
+    }
+
+    .filter-select {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .notes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .note-modal-content {
+        width: 95%;
+        margin: 5% auto;
+        max-height: 85vh;
+    }
+
+    .note-modal-header,
+    .note-modal-body {
+        padding: 1.5rem;
+    }
+
+    .close {
+        right: 1.5rem;
+        top: 1.5rem;
     }
 
     .contact-info {
