@@ -10,7 +10,7 @@ The notes system allows you to organize and display mathematical notes, tutorial
 - Organized by categories (Mathematical Analysis, Algorithms, Tutorials, Research Notes)
 - Searchable by title, description, or tags
 - Displayed in an attractive card layout
-- Opened in a modal with full markdown rendering
+- Opened in a dedicated page with full markdown rendering
 
 ## Quick Start
 
@@ -109,7 +109,7 @@ The system supports LaTeX math through MathJax:
 
 ### Responsive Design  
 - Cards automatically adjust to screen size
-- Mobile-friendly modal dialogs
+- Mobile-friendly note pages
 - Touch-friendly interface
 
 ### Organization
@@ -122,6 +122,7 @@ The system supports LaTeX math through MathJax:
 ```
 your-website/
 ├── index.html          # Main page with notes section
+├── note.html           # Individual note page template
 ├── styles.css          # Styling including notes styles  
 ├── script.js           # JavaScript for notes functionality
 ├── notes.json          # Notes metadata
