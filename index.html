@@ -38,6 +38,31 @@
     </header>
 
     <main>
+        <section id="notes" class="notes">
+            <div class="container">
+                <h2>Notes</h2>
+                <div class="notes-content">
+                    <p>A collection of mathematical notes, tutorials, and research observations in markdown format.</p>
+                    
+                    <div class="notes-controls">
+                        <input type="text" id="notes-search" placeholder="Search notes..." class="search-input">
+                        <select id="notes-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="analysis">Mathematical Analysis</option>
+                            <option value="algorithms">Algorithms</option>
+                            <option value="tutorials">Tutorials</option>
+                            <option value="research">Research Notes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="notes-grid" id="notes-grid">
+                        <!-- Notes will be loaded dynamically -->
+                        <div class="loading">Loading notes...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="hero" class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -119,31 +144,6 @@
                     <div class="publication-item">
                         <h3>Conference Presentations</h3>
                         <p><em>Conference presentations and talks will be listed here.</em></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="notes" class="notes">
-            <div class="container">
-                <h2>Notes</h2>
-                <div class="notes-content">
-                    <p>A collection of mathematical notes, tutorials, and research observations in markdown format.</p>
-                    
-                    <div class="notes-controls">
-                        <input type="text" id="notes-search" placeholder="Search notes..." class="search-input">
-                        <select id="notes-filter" class="filter-select">
-                            <option value="all">All Categories</option>
-                            <option value="analysis">Mathematical Analysis</option>
-                            <option value="algorithms">Algorithms</option>
-                            <option value="tutorials">Tutorials</option>
-                            <option value="research">Research Notes</option>
-                        </select>
-                    </div>
-                    
-                    <div class="notes-grid" id="notes-grid">
-                        <!-- Notes will be loaded dynamically -->
-                        <div class="loading">Loading notes...</div>
                     </div>
                 </div>
             </div>
