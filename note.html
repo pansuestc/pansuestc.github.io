@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="note-title">Note - Pan Su</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo"><a href="index.html">Pan Su</a></h1>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#notes">Notes</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="note-page">
+            <div class="container">
+                <div class="note-navigation">
+                    <a href="index.html#notes" class="back-to-notes">← Back to Notes</a>
+                </div>
+                
+                <article class="note-content" id="note-content">
+                    <div class="loading">Loading note content...</div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Pan Su. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load note content when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const noteFile = urlParams.get('file');
+            const noteTitle = urlParams.get('title');
+            
+            if (noteFile && noteTitle) {
+                loadNoteContent(noteFile, noteTitle);
+            } else {
+                document.getElementById('note-content').innerHTML = 
+                    '<div class="error">Note not found. <a href="index.html#notes">Return to notes</a></div>';
+            }
+        });
+
+        function loadNoteContent(filePath, title) {
+            // Update page title
+            document.getElementById('note-title').textContent = title + ' - Pan Su';
+            
+            // Load and render markdown content
+            fetch(filePath)
+                .then(response => response.text())
+                .then(markdown => {
+                    const html = simpleMarkdownToHtml(markdown);
+                    document.getElementById('note-content').innerHTML = html;
+                    
+                    // Re-render MathJax if available
+                    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                        MathJax.typesetPromise([document.getElementById('note-content')]);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading note:', error);
+                    document.getElementById('note-content').innerHTML = 
+                        '<div class="error">Failed to load note content. <a href="index.html#notes">Return to notes</a></div>';
+                });
+        }
+    </script>
+</body>
+</html>
