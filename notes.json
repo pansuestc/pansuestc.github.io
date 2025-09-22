@@ -1,11 +1,11 @@
 [
   {
     "id": "calculus-fundamentals",
-    "title": "Calculus Fundamentals",
+    "title": "Asymptioc behaviour of kernel",
     "category": "analysis",
     "description": "Basic concepts in differential and integral calculus",
-    "file": "notes/calculus-fundamentals.md",
-    "date": "2024-01-15",
+    "file": "notes/Asymptioc-behaviour-of-kernel.md",
+    "date": "2025-09-22",
     "tags": ["calculus", "derivatives", "integrals"]
   },
   {
