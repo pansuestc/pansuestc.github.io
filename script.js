@@ -222,8 +222,14 @@ function initializeNotesSystem() {
 
     // Load notes metadata
     fetch('notes.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log('Notes loaded successfully:', data.length, 'notes found');
             notesData = data;
             filteredNotes = [...notesData];
             displayNotes(filteredNotes);
@@ -232,7 +238,7 @@ function initializeNotesSystem() {
         .catch(error => {
             console.error('Error loading notes:', error);
             document.getElementById('notes-grid').innerHTML = 
-                '<div class="no-notes">Failed to load notes. Please try again later.</div>';
+                `<div class="no-notes">Failed to load notes: ${error.message}<br>Please try again later.</div>`;
         });
 
     function displayNotes(notes) {
