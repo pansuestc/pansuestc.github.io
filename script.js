@@ -304,66 +304,9 @@ function initializeNotesSystem() {
 }
 
 function openNote(filePath, title) {
-    // Create modal if it doesn't exist
-    let modal = document.getElementById('note-modal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'note-modal';
-        modal.className = 'note-modal';
-        modal.innerHTML = `
-            <div class="note-modal-content">
-                <div class="note-modal-header">
-                    <span class="close">&times;</span>
-                    <h2 id="note-modal-title">${title}</h2>
-                </div>
-                <div class="note-modal-body" id="note-modal-body">
-                    <div class="loading">Loading note content...</div>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-
-        // Setup close functionality
-        const closeBtn = modal.querySelector('.close');
-        closeBtn.onclick = () => modal.style.display = 'none';
-        
-        modal.onclick = (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
-
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
-            }
-        });
-    }
-
-    // Update title
-    document.getElementById('note-modal-title').textContent = title;
-    
-    // Show modal
-    modal.style.display = 'block';
-
-    // Load and render markdown content
-    fetch(filePath)
-        .then(response => response.text())
-        .then(markdown => {
-            const html = simpleMarkdownToHtml(markdown);
-            document.getElementById('note-modal-body').innerHTML = html;
-            
-            // Re-render MathJax if available
-            if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
-                MathJax.typesetPromise([document.getElementById('note-modal-body')]);
-            }
-        })
-        .catch(error => {
-            console.error('Error loading note:', error);
-            document.getElementById('note-modal-body').innerHTML = 
-                '<p>Failed to load note content. Please try again later.</p>';
-        });
+    // Navigate to note page with query parameters
+    const noteUrl = `note.html?file=${encodeURIComponent(filePath)}&title=${encodeURIComponent(title)}`;
+    window.location.href = noteUrl;
 }
 
 // Simple markdown to HTML converter
