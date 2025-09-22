@@ -115,17 +115,18 @@ $$
 
 the first order derivative disappears since they form the basis of the tangent space at $x_0$. Then the square of distance can be expanded as
 $$
-r^2 = |x-x_0|^2=(x-x_0)\cdot (x-x_0) \\
-= \sum_{|\alpha|\ge 1} \frac{1}{\alpha!}D^\alpha x(0)\,u^\alpha\cdot \sum_{|\beta|\ge 1} \frac{1}{\beta!}D^\beta x(0)\,u^\beta \\
-= \sum_{|\gamma| \ge 2} \left( \sum_{\substack{\alpha + \beta = \gamma \\ |\alpha|, |\beta| \ge 1}} \frac{1}{\alpha! \, \beta!} \left( D^\alpha x(0) \cdot D^\beta x(0) \right) \right) u^\gamma
+\begin{aligned}
+r^2 &= |x-x_0|^2=(x-x_0)\cdot (x-x_0) \\
+&= \sum_{|\alpha|\ge 1} \frac{1}{\alpha!}D^\alpha x(0)\,u^\alpha\cdot \sum_{|\beta|\ge 1} \frac{1}{\beta!}D^\beta x(0)\,u^\beta \\
+&= \sum_{|\gamma| \ge 2} \left( \sum_{\substack{\alpha + \beta = \gamma \\ |\alpha|, |\beta| \ge 1}} \frac{1}{\alpha! \, \beta!} \left( D^\alpha x(0) \cdot D^\beta x(0) \right) \right) u^\gamma
+\end{aligned}
 $$
 thus
 $$
-\frac{\partial}{\partial_{n_{x_0}}}\frac{1}{|x-x_0|} = \frac{x-x_0}{|x-x_0|^3}\cdot n_0
-$$
-
-$$
-= \frac{1}{|x-x_0|}\frac{\sum_{|\alpha|\ge 2} \frac{1}{\alpha!}D^\alpha x(0)\cdot n_0\,u^\alpha}{\sum_{|\gamma| \ge 2} \left( \sum_{\substack{\alpha + \beta = \gamma \\ |\alpha|, |\beta| \ge 1}} \frac{1}{\alpha! \, \beta!} \left( D^\alpha x(0) \cdot D^\beta x(0) \right) \right) u^\gamma}
+\begin{aligned}
+\frac{\partial}{\partial_{n_{x_0}}}\frac{1}{|x-x_0|} &= \frac{x-x_0}{|x-x_0|^3}\cdot n_0\\
+&= \frac{1}{|x-x_0|}\frac{\sum_{|\alpha|\ge 2} \frac{1}{\alpha!}D^\alpha x(0)\cdot n_0\,u^\alpha}{\sum_{|\gamma| \ge 2} \left( \sum_{\substack{\alpha + \beta = \gamma \\ |\alpha|, |\beta| \ge 1}} \frac{1}{\alpha! \, \beta!} \left( D^\alpha x(0) \cdot D^\beta x(0) \right) \right) u^\gamma}
+\end{aligned}
 $$
 when $u\to (0,0)$,the second factor of the above equation represents the normal curvature of the surface at $x_0$, which is given by
 
