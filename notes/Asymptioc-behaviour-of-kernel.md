@@ -140,35 +140,4 @@ $$
 \frac{\partial}{\partial_{n_{x_0}}}\frac{1}{|x-x_0|}=\frac{1}{2|x-x_0|}\kappa_n
 $$
 
-We need to compute the normal curvature of the surface at $x_0$.
-denote the shape operator as $S=-\nabla n$.
-Let
-
-$$
-I=\begin{pmatrix}
-    E & F \\
-    F & G
-\end{pmatrix}
-$$
-
-and
-
-$$
-II=\begin{pmatrix}
-    L & M \\
-    M & N
-\end{pmatrix}
-$$
-
-then
-
-$$
-S=I^{-1}II
-$$
-
-Let $Se_i=\lambda_ie_i$ and $v=\cos\theta e_1+\sin\theta e_2$,where $e_1,e_2$ are the orthonormal basis of the tangent space at $x_0$, then the normal curvature can be computed by Euler's formula
-
-$$
-\kappa_n=\lambda_1\cos^2\theta+\lambda_2\sin^2\theta
-$$
 For example. the normal curvature of the unit sphere is constant, i.e. $\kappa_n=-1$.

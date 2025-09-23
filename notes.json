@@ -36,12 +36,12 @@
     "tags": ["linear-algebra", "matrices", "tutorial"]
   },
   {
-    "id": "research-optimization",
-    "title": "Optimization Research Notes",
-    "category": "research",
+    "id": "differnetial-operator-on-riemannian-manifold",
+    "title": "differnetial-operator-on-riemannian-manifold",
+    "category": "analysis-geometry",
     "description": "Current research progress on optimization algorithms",
-    "file": "notes/research-optimization.md",
-    "date": "2024-02-10",
-    "tags": ["optimization", "research", "algorithms"]
+    "file": "notes/differnetial-operator-on-riemannian-manifold.md",
+    "date": "2025-09-23",
+    "tags": ["calculus", "manifold"]
   }
 ]
