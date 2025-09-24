@@ -2,13 +2,13 @@ Here is a transcription of the handwritten notes in Markdown format, with mathem
 
 ***
 
-The notes derive the general formula for the curl of a vector field on a 3-dimensional Riemannian manifold.
+The notes derive the general formula(in local coordinates) for the curl, div and Lapace operaotr on a 3-dimensional Riemannian manifold.
 
 ### Introduction
 
 The starting point is the generalized Stokes' theorem:
-$$ \int_{\Sigma} \langle \mathrm{curl} X, N \rangle dA = \int_{\partial \Sigma} \langle X, T \rangle ds $$
-The goal is to find a coordinate-based expression for `curl X`. The derivation is based on the relationship `curl X = β⁻¹(d(X♭))`.
+$$ \int_{\Sigma} \langle \mathrm{curl} X, N \rangle_g dA = \int_{\partial \Sigma} \langle X, T \rangle_g ds $$
+The goal is to find a coordinate-based expression for $\text{curl} X$. The derivation is based on the relationship $\text{curl} X = \beta^{-1}(d(X^♭))$.
 
 ### Derivation
 
@@ -26,7 +26,7 @@ $$
 where $\widehat{dx^i}$ denotes that the term is omitted.
 
 For the 3-dimensional case ($n=3$):
-$$ \beta(X) = (X^1 dx^2 \wedge dx^3 - X^2 dx^1 \wedge dx^3 + X^3 dx^1 \wedge dx^2) \sqrt{|g|} $$
+$$ \beta(X) = \sqrt{|g|}(X^1 dx^2 \wedge dx^3 - X^2 dx^1 \wedge dx^3 + X^3 dx^1 \wedge dx^2)  $$
 The map $\beta: \mathfrak{X}(M) \to \Lambda^2(M)$ is defined on a manifold where $\dim(\mathfrak{X}(M)) = 3$.
 
 Since $\beta(X)=0 \iff X=0$, the map $\beta$ is injective. Because the domain and codomain have the same dimension, $\beta$ is a bijection. This allows us to define its inverse, $\beta^{-1}$.
@@ -61,6 +61,13 @@ $$
 \end{aligned}
 $$
 
+###
+By the definition of divergence operator,
+ $$\text{div}X=*^{-1}d\beta(X)=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}X^i)$$
+and 
+$$\text{grad}f=(df)^\#=g^{ij}\frac{\partial f}{\partial x^i}\frac{\partial}{\partial x^{j}}$$
+Then by compositing the above operator, we can derive the second order Laplace operator
+$$\Delta f=\text{div}\text{grad}f=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}g^{ij}\frac{\partial f}{\partial x^j})$$
 ### Remark: Euclidean Space
 
 For Euclidean space, the metric tensor is the identity matrix, $g_{ij} = \delta_{ij}$, and its determinant is $|g|=1$. The formula simplifies significantly:

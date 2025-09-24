@@ -37,9 +37,9 @@
   },
   {
     "id": "differnetial-operator-on-riemannian-manifold",
-    "title": "differnetial-operator-on-riemannian-manifold",
+    "title": "Generalized differnetial operator",
     "category": "analysis-geometry",
-    "description": "Current research progress on optimization algorithms",
+    "description": "differnetial operator on Riemannian manifold",
     "file": "notes/differnetial-operator-on-riemannian-manifold.md",
     "date": "2025-09-23",
     "tags": ["calculus", "manifold"]
