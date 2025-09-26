@@ -61,7 +61,6 @@ $$
 \end{aligned}
 $$
 
-###
 By the definition of divergence operator,
  $$\text{div}X=*^{-1}d\beta(X)=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}X^i)$$
 and 
@@ -76,3 +75,47 @@ $g_{ij}X^j = \delta_{ij}X^j = X^i$.
 Substituting this into the general formula yields:
 $$ \mathrm{curl} X = \left(\frac{\partial X^3}{\partial x^2} - \frac{\partial X^2}{\partial x^3}\right)\frac{\partial}{\partial x^1} + \left(\frac{\partial X^1}{\partial x^3} - \frac{\partial X^3}{\partial x^1}\right)\frac{\partial}{\partial x^2} + \left(\frac{\partial X^2}{\partial x^1} - \frac{\partial X^1}{\partial x^2}\right)\frac{\partial}{\partial x^3} $$
 which is the classical definition of the curl operator.
+
+
+***
+
+### Vector Calculus in Matrix Form
+
+If we write vector calculus in matrix form, the curl operator $\nabla\times$ acting on a vector field in `ℝ³` can be represented by the following matrix of differential operators:
+
+$$ \nabla\times = \begin{pmatrix} 0 & -\partial_{x_3} & \partial_{x_2} \\ \partial_{x_3} & 0 & -\partial_{x_1} \\ -\partial_{x_2} & \partial_{x_1} & 0 \end{pmatrix} $$
+
+The operator $\nabla\times\nabla\times$ is then the matrix product of $\nabla\times$ with itself:
+$$ \nabla\times\nabla\times = \begin{pmatrix} -\partial_{x_2}^2 - \partial_{x_3}^2 & \partial_{x_1 x_2}^2 & \partial_{x_1 x_3}^2 \\ \partial_{x_2 x_1}^2 & -\partial_{x_1}^2 - \partial_{x_3}^2  & \partial_{x_2 x_3}^2 \\ \partial_{x_3 x_1}^2 & \partial_{x_3 x_2}^2 & -\partial_{x_1}^2 - \partial_{x_2}^2 \end{pmatrix} $$
+
+And we denote the vector Laplacian $\bar{\Delta}$ as the diagonal matrix with the scalar Laplacian `Δ` on the diagonal:
+$$ \bar{\Delta} = \begin{bmatrix} \Delta & & \\ & \Delta & \\ & & \Delta \end{bmatrix} $$
+Then we have the well-known vector calculus identity:
+$$ \bar{\Delta} + \nabla\times\nabla\times = \nabla\nabla\cdot $$
+This is an important formula. *(Note: `∇∇·` represents the `grad-div` operator.)*
+
+### Helmholtz Equation and Green's Function
+
+Next, we consider the expression $\partial_{n_x} \partial_{n_y} G(x,y)$, where `G` is the Green's function of the Helmholtz equation.
+
+Direct computation yields:
+$$
+\begin{aligned}
+\partial_{n_x} \partial_{n_y} G(x,y) &= \nabla_x (\nabla_y G\cdot n_y) \cdot n_x \\
+&= -(n_y^T \nabla_y^2 G) \cdot n_x \quad \textit{By } \nabla(A\cdot B) = B^T\nabla A + A^T\nabla B \\
+&= -(n_y^T (\bar{\Delta} + \nabla_y \times \nabla_y \times) G) \cdot n_x \quad \text{(Here the matrix with scalar are element by element)} \\
+&= k^2 n_x \cdot n_y G - n_y^T (\nabla_y \times \nabla_y \times) G \cdot n_x \\
+&= k^2 n_x \cdot n_y G - n_y^T \nabla_y \times (\nabla_y  G \times n_x) \\
+&= k^2 n_x \cdot n_y G + n_y^T \nabla_y \times (\nabla_x G \times n_x)
+\end{aligned}
+$$
+
+
+Thus, by Stoke's formula, we have:
+$$
+\begin{aligned}
+\mathcal{N}\varphi &:= \int_{\Gamma} \partial_{n_x} \partial_{n_y} G(x,y) \varphi(y) dS_y \\
+&= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y +  \int_{\Gamma} n_y^T \nabla_x \times (\nabla_y \times G \times n_x) \varphi(y) dS_y \\
+&= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y + \int_{\Gamma} \boldsymbol{\text{curl}}_{\Gamma_x} G \cdot \boldsymbol{\text{curl}}_{\Gamma_y} (\varphi(y)) dS_y
+\end{aligned}
+$$
