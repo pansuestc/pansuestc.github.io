@@ -76,8 +76,18 @@ Substituting this into the general formula yields:
 $$ \mathrm{curl} X = \left(\frac{\partial X^3}{\partial x^2} - \frac{\partial X^2}{\partial x^3}\right)\frac{\partial}{\partial x^1} + \left(\frac{\partial X^1}{\partial x^3} - \frac{\partial X^3}{\partial x^1}\right)\frac{\partial}{\partial x^2} + \left(\frac{\partial X^2}{\partial x^1} - \frac{\partial X^1}{\partial x^2}\right)\frac{\partial}{\partial x^3} $$
 which is the classical definition of the curl operator.
 
-
-***
+Our question is, when this operator are defined in Riemannian Manifold(we fix the dimension $n=3$), is this  formula still correct? Recall that in Riemannian Manifold with metric $g$,
+ $$\text{div}X=*^{-1}d\beta(X)=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}X^i)$$
+and 
+$$\text{grad}f=(df)^\#=g^{ij}\frac{\partial f}{\partial x^i}\frac{\partial}{\partial x^{j}}$$
+$$\Delta f=\text{div}\text{grad}f=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}g^{ij}\frac{\partial f}{\partial x^j})$$
+$$
+\begin{aligned}
+\mathrm{curl} X = \beta^{-1}(d(X^\flat))=\frac{1}{\sqrt{|g|}} \bigg\{ & \left(\frac{\partial}{\partial x^2}(g_{i3}X^i) - \frac{\partial}{\partial x^3}(g_{i2}X^i)\right) \frac{\partial}{\partial x^1} \\
+& + \left(\frac{\partial}{\partial x^3}(g_{i1}X^i) - \frac{\partial}{\partial x^1}(g_{i3}X^i)\right) \frac{\partial}{\partial x^2} \\
+& + \left(\frac{\partial}{\partial x^1}(g_{i2}X^i) - \frac{\partial}{\partial x^2}(g_{i1}X^i)\right) \frac{\partial}{\partial x^3} \bigg\}
+\end{aligned}
+$$
 
 ### Vector Calculus in Matrix Form
 
@@ -93,6 +103,19 @@ $$ \bar{\Delta} = \begin{bmatrix} \Delta & & \\ & \Delta & \\ & & \Delta \end{bm
 Then we have the well-known vector calculus identity:
 $$ \bar{\Delta} + \nabla\times\nabla\times = \nabla\nabla\cdot $$
 This is an important formula. *(Note: `∇∇·` represents the `grad-div` operator.)*
+
+Our question is, when this operator are defined in Riemannian Manifold(we fix the dimension $n=3$), is this  formula still correct? Recall that in Riemannian Manifold with metric $g$,
+ $$\text{div}X=*^{-1}d\beta(X)=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}X^i)$$
+and 
+$$\text{grad}f=(df)^\#=g^{ij}\frac{\partial f}{\partial x^i}\frac{\partial}{\partial x^{j}}$$
+$$\Delta f=\text{div}\text{grad}f=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}g^{ij}\frac{\partial f}{\partial x^j})$$
+$$
+\begin{aligned}
+\mathrm{curl} X = \beta^{-1}(d(X^\flat))=\frac{1}{\sqrt{|g|}} \bigg\{ & \left(\frac{\partial}{\partial x^2}(g_{i3}X^i) - \frac{\partial}{\partial x^3}(g_{i2}X^i)\right) \frac{\partial}{\partial x^1} \\
+& + \left(\frac{\partial}{\partial x^3}(g_{i1}X^i) - \frac{\partial}{\partial x^1}(g_{i3}X^i)\right) \frac{\partial}{\partial x^2} \\
+& + \left(\frac{\partial}{\partial x^1}(g_{i2}X^i) - \frac{\partial}{\partial x^2}(g_{i1}X^i)\right) \frac{\partial}{\partial x^3} \bigg\}
+\end{aligned}
+$$
 
 ### Helmholtz Equation and Green's Function
 
@@ -115,7 +138,51 @@ Thus, by Stoke's formula, we have:
 $$
 \begin{aligned}
 \mathcal{N}\varphi &:= \int_{\Gamma} \partial_{n_x} \partial_{n_y} G(x,y) \varphi(y) dS_y \\
-&= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y +  \int_{\Gamma} n_y^T \nabla_x \times (\nabla_y \times G \times n_x) \varphi(y) dS_y \\
+&= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y +  \int_{\Gamma} n_y^T \nabla_y \times (\nabla_x G \times n_x) \varphi(y) dS_y \\
 &= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y + \int_{\Gamma} \boldsymbol{\text{curl}}_{\Gamma_x} G \cdot \boldsymbol{\text{curl}}_{\Gamma_y} (\varphi(y)) dS_y
 \end{aligned}
 $$
+
+Here is a transcription of the handwritten notes in Markdown format. The notes define and use formulas for the surface curl.
+
+***
+
+### Some useful formulae.
+
+Let $v \in C^\infty(M)$, $d \in (C^\infty(M))^3$.
+
+Define the surface curl for a vector field $\alpha$ (scalar result) and a scalar field $v$ (vector result):
+$$ \mathrm{curl}_p \, \alpha = (\nabla \times \alpha) \cdot n, \quad \overrightarrow{\mathrm{curl}_p} \, v = n \times \nabla v. $$
+
+Then:
+#### ①
+$$
+\begin{aligned}
+\mathrm{curl}_{p_x} (v(x,y) \alpha(y)) &= \nabla_x \times (v \alpha) \cdot n_x \\
+&= (\nabla_x v \times \alpha + v \nabla_x \times \alpha) \cdot n_x \\
+&= (\nabla_x v \times \alpha) \cdot n_x \\
+&= (n_x \times \nabla_x v) \cdot \alpha
+\end{aligned}
+$$
+
+#### ②
+Consider a diagonal matrix $D = \mathrm{diag}\{d_1(x_2), d_2(x_1), d_3(x_1)\}$.
+*(Note: The arguments of the functions $d_i$ are transcribed as they appear but may contain typos in the original note.)*
+
+Then,
+$$
+\begin{aligned}
+\mathrm{curl}_{p_x}(v D \alpha) &= \nabla \times (v D \alpha) \cdot n \\
+&= (\nabla v \times D \alpha) \cdot n + v (\nabla \times (D \alpha)) \cdot n \\
+&= D\alpha \cdot (n \times \nabla v) + v( (\nabla \times D)\alpha + \sum \nabla d_i \times A_i) \cdot n \\
+&= D\alpha \cdot (n \times \nabla v) + v( (\nabla \times D)\alpha ) \cdot n
+\end{aligned}
+$$
+*(Note: The expansion for $\nabla \times (D\alpha)$ uses non-standard notation and identities.)*
+
+Since 
+$$ \nabla \times D = \nabla \times 
+\begin{bmatrix} d_1(x_1) & & \\& d_2(x_2) & \\& & d_3(x_3) 
+\end{bmatrix} = 0 $$
+we have
+$$ \mathrm{curl}_{p_x}(v D \alpha) = D\alpha \cdot (n_x \times \nabla_x v) $$
