@@ -139,7 +139,7 @@ $$
 \begin{aligned}
 \mathcal{N}\varphi &:= \int_{\Gamma} \partial_{n_x} \partial_{n_y} G(x,y) \varphi(y) dS_y \\
 &= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y +  \int_{\Gamma} n_y^T \nabla_y \times (\nabla_x G \times n_x) \varphi(y) dS_y \\
-&= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y + \int_{\Gamma} \boldsymbol{\text{curl}}_{\Gamma_x} G \cdot \boldsymbol{\text{curl}}_{\Gamma_y} (\varphi(y)) dS_y
+&= k^2 \int_{\Gamma} G(x,y) (n_x \cdot n_y) \varphi(y) dS_y + \int_{\Gamma} \overrightarrow{\text{curl}}_{\Gamma_x} G \cdot \overrightarrow{\text{curl}}_{\Gamma_y} (\varphi(y)) dS_y
 \end{aligned}
 $$
 
@@ -147,12 +147,12 @@ Here is a transcription of the handwritten notes in Markdown format. The notes d
 
 ***
 
-### Some useful formulae.
+### Some useful formula.
 
 Let $v \in C^\infty(M)$, $d \in (C^\infty(M))^3$.
 
 Define the surface curl for a vector field $\alpha$ (scalar result) and a scalar field $v$ (vector result):
-$$ \mathrm{curl}_p \, \alpha = (\nabla \times \alpha) \cdot n, \quad \overrightarrow{\mathrm{curl}_p} \, v = n \times \nabla v. $$
+$$ \mathrm{curl}_\Gamma \, \alpha = (\nabla \times \alpha) \cdot n, \quad \overrightarrow{\mathrm{curl}_\Gamma} \, v = n \times \nabla v. $$
 
 Then:
 #### ①
@@ -185,4 +185,4 @@ $$ \nabla \times D = \nabla \times
 \begin{bmatrix} d_1(x_1) & & \\& d_2(x_2) & \\& & d_3(x_3) 
 \end{bmatrix} = 0 $$
 we have
-$$ \mathrm{curl}_{p_x}(v D \alpha) = D\alpha \cdot (n_x \times \nabla_x v) $$
+$$ \mathrm{curl}_{\Gamma_x}(v D \alpha) = D\alpha \cdot (n_x \times \nabla_x v) $$
