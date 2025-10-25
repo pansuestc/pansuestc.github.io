@@ -42,6 +42,15 @@
     "description": "differnetial operator on Riemannian manifold",
     "file": "notes/differnetial-operator-on-riemannian-manifold.md",
     "date": "2025-09-23",
-    "tags": ["calculus", "manifold"]
+    "tags": ["analysis", "geometry"]
+  },
+    {
+    "id": "boudary-integral-equation",
+    "title": "boudary integral equation in layered media",
+    "category": "analysis-bie",
+    "description": "use boudary integral equation solve Helmholtz equation in layered media",
+    "file": "notes/3layer-bie.md",
+    "date": "2025-10-25",
+    "tags": ["analysis", "bie"]
   }
 ]
