@@ -1,4 +1,3 @@
-Here is a transcription of the handwritten notes in Markdown format, with mathematical expressions rendered in LaTeX.
 
 ***
 
@@ -75,20 +74,6 @@ $g_{ij}X^j = \delta_{ij}X^j = X^i$.
 Substituting this into the general formula yields:
 $$ \mathrm{curl} X = \left(\frac{\partial X^3}{\partial x^2} - \frac{\partial X^2}{\partial x^3}\right)\frac{\partial}{\partial x^1} + \left(\frac{\partial X^1}{\partial x^3} - \frac{\partial X^3}{\partial x^1}\right)\frac{\partial}{\partial x^2} + \left(\frac{\partial X^2}{\partial x^1} - \frac{\partial X^1}{\partial x^2}\right)\frac{\partial}{\partial x^3} $$
 which is the classical definition of the curl operator.
-
-Our question is, when this operator are defined in Riemannian Manifold(we fix the dimension $n=3$), is this  formula still correct? Recall that in Riemannian Manifold with metric $g$,
- $$\text{div}X=*^{-1}d\beta(X)=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}X^i)$$
-and 
-$$\text{grad}f=(df)^\#=g^{ij}\frac{\partial f}{\partial x^i}\frac{\partial}{\partial x^{j}}$$
-$$\Delta f=\text{div}\text{grad}f=\frac{1}{\sqrt{|g|}}\frac{\partial}{\partial x^i}(\sqrt{g}g^{ij}\frac{\partial f}{\partial x^j})$$
-$$
-\begin{aligned}
-\mathrm{curl} X = \beta^{-1}(d(X^\flat))=\frac{1}{\sqrt{|g|}} \bigg\{ & \left(\frac{\partial}{\partial x^2}(g_{i3}X^i) - \frac{\partial}{\partial x^3}(g_{i2}X^i)\right) \frac{\partial}{\partial x^1} \\
-& + \left(\frac{\partial}{\partial x^3}(g_{i1}X^i) - \frac{\partial}{\partial x^1}(g_{i3}X^i)\right) \frac{\partial}{\partial x^2} \\
-& + \left(\frac{\partial}{\partial x^1}(g_{i2}X^i) - \frac{\partial}{\partial x^2}(g_{i1}X^i)\right) \frac{\partial}{\partial x^3} \bigg\}
-\end{aligned}
-$$
-
 ### Vector Calculus in Matrix Form
 
 If we write vector calculus in matrix form, the curl operator $\nabla\times$ acting on a vector field in `ℝ³` can be represented by the following matrix of differential operators:
@@ -158,7 +143,7 @@ Then:
 #### ①
 $$
 \begin{aligned}
-\mathrm{curl}_{p_x} (v(x,y) \alpha(y)) &= \nabla_x \times (v \alpha) \cdot n_x \\
+\mathrm{curl}_{\Gamma_x} (v(x,y) \alpha(y)) &= \nabla_x \times (v \alpha) \cdot n_x \\
 &= (\nabla_x v \times \alpha + v \nabla_x \times \alpha) \cdot n_x \\
 &= (\nabla_x v \times \alpha) \cdot n_x \\
 &= (n_x \times \nabla_x v) \cdot \alpha
@@ -172,7 +157,7 @@ Consider a diagonal matrix $D = \mathrm{diag}\{d_1(x_2), d_2(x_1), d_3(x_1)\}$.
 Then,
 $$
 \begin{aligned}
-\mathrm{curl}_{p_x}(v D \alpha) &= \nabla \times (v D \alpha) \cdot n \\
+\mathrm{curl}_{\Gamma_x}(v D \alpha) &= \nabla \times (v D \alpha) \cdot n \\
 &= (\nabla v \times D \alpha) \cdot n + v (\nabla \times (D \alpha)) \cdot n \\
 &= D\alpha \cdot (n \times \nabla v) + v( (\nabla \times D)\alpha + \sum \nabla d_i \times A_i) \cdot n \\
 &= D\alpha \cdot (n \times \nabla v) + v( (\nabla \times D)\alpha ) \cdot n
