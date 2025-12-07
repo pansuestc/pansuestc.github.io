@@ -52,5 +52,14 @@
     "file": "notes/3layer-bie.md",
     "date": "2025-10-25",
     "tags": ["analysis", "bie"]
+  },
+  {
+    "id": "FRP-GF",
+    "title": "Fourier representation of Green function",
+    "category": "analysis-bie",
+    "description": "Fourier representation of Green function",
+    "file": "notes/SommerfeldIntegral.md",
+    "date": "2025-12-07",
+    "tags": ["analysis", "bie"]
   }
 ]
