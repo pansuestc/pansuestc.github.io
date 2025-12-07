@@ -30,17 +30,18 @@ $$
 \end{aligned}
 $$
 
-Running the following code in Mathematica, we can get the asymptotic expansion of $af'(az)-bf'(bz)$ and $a^2f''(az)-b^2f''(bz)$, where $f(z)=H_0^{(1)}(z)$.
+Running the following code in Mathematica, we can get the asymptotic expansion of $f(az)-f(bz)$, $af'(az)-bf'(bz)$ and $a^2f''(az)-b^2f''(bz)$, where $f(z)=H_0^{(1)}(z)$.
+```mathematica
+exp0 = Asymptotic[ HankelH1[0, a z] - HankelH1[0, b z], {z, 0, 2}]
+```
+The output is
+$$
+\frac{2 i \left(\log \left(\frac{a z}{2}\right)-\log \left(\frac{b z}{2}\right)\right)}{\pi }-\frac{i z^2 \left(2 a^2 \log \left(\frac{a z}{2}\right)-i \pi  a^2+2 \gamma  a^2-2 a^2-2 b^2 \log \left(\frac{b z}{2}\right)+2 b^2+i \pi  b^2-2 \gamma  b^2\right)}{4 \pi }
+$$
 
 ```mathematica
 exp1=Asymptotic[-a HankelH1[1,a z]+b HankelH1[1,b z],{z,0,4}]
 FullSimplify[exp1]
-```
-
-```mathematica
-exp2=Asymptotic[a^2 (-HankelH1[0,a z]+1/(a z) HankelH1[1,a z])
--b^2 (-HankelH1[0,b z]+1/(b z) HankelH1[1,b z]),{z,0,4}]
-FullSimplify[exp2]
 ```
 
 $$
@@ -50,7 +51,11 @@ af'(az)-bf'(bz) &= \frac{i z^3 \left(4 a^4 \log \left(\frac{a z}{2}\right)-2 i \
 \end{aligned}
 $$
 
-and
+```mathematica
+exp2=Asymptotic[a^2 (-HankelH1[0,a z]+1/(a z) HankelH1[1,a z])
+-b^2 (-HankelH1[0,b z]+1/(b z) HankelH1[1,b z]),{z,0,4}]
+FullSimplify[exp2]
+```
 
 $$
 \begin{aligned}
