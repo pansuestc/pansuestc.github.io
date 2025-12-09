@@ -10,47 +10,103 @@ The inverse Fourier Transform is:
 
 $$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i\omega t} d\omega$$
 
-## Properties
+## Fourier Transform and Distribution
 
-### Linearity
-If $F_1(\omega)$ and $F_2(\omega)$ are the Fourier transforms of $f_1(t)$ and $f_2(t)$ respectively, then:
+### Definition
 
-$$\mathcal{F}[af_1(t) + bf_2(t)] = aF_1(\omega) + bF_2(\omega)$$
+The Fourier transform of a function $f \in L^1(\mathbb{R}^d)$ is defined by:
 
-### Time Shifting
-$$\mathcal{F}[f(t-a)] = e^{-i\omega a}F(\omega)$$
+$$\hat{f}(w) = \int_{\mathbb{R}^d} f(x) e^{-iwx} dx$$
 
-### Frequency Shifting
-$$\mathcal{F}[e^{i\omega_0 t}f(t)] = F(\omega - \omega_0)$$
+and the inverse Fourier transform is defined by:
 
-## Common Transforms
+$$f(x) = \frac{1}{(2\pi)^d} \int_{\mathbb{R}^d} \hat{f}(w) e^{iwx} dw$$
 
-| Function $f(t)$ | Fourier Transform $F(\omega)$ |
-|-----------------|-------------------------------|
-| $\delta(t)$ | $1$ |
-| $1$ | $2\pi\delta(\omega)$ |
-| $e^{-at}u(t)$ (for $a > 0$) | $\frac{1}{a + i\omega}$ |
-| $\cos(\omega_0 t)$ | $\pi[\delta(\omega - \omega_0) + \delta(\omega + \omega_0)]$ |
+**Lemma 1:** Let $f \in L^1(\mathbb{R}^d)$, then the Fourier transform of $f$ is a continuous function.
 
-## Applications
+**Lemma 2:** 
+$$\hat{1}(w) = \int_{\mathbb{R}^d} e^{-iwx} dx = (2\pi)^d \delta(w)$$
 
-1. **Signal Processing**: Analyzing frequency content of signals
-2. **Image Processing**: Filtering and enhancement
-3. **Differential Equations**: Solving PDEs
-4. **Quantum Mechanics**: Wave function analysis
+$$\hat{\delta}(w) = \int_{\mathbb{R}^d} \delta(x) e^{-iwx} dx = 1$$
 
-## Example: Gaussian Function
+**Remark:** The adjoint operator of Fourier transform is:
 
-For the Gaussian function $f(t) = e^{-at^2}$ where $a > 0$:
+$$F^{\star} = (2\pi)^d F^{-1}$$
 
-$$F(\omega) = \sqrt{\frac{\pi}{a}} e^{-\omega^2/(4a)}$$
+By this property, we can obtain the Plancherel theorem.
 
-This shows that the Fourier transform of a Gaussian is also a Gaussian!
+**Plancherel Theorem:** Let $f \in L^1(\mathbb{R}^d) \cap L^2(\mathbb{R}^d)$, then:
 
-## Discrete Fourier Transform (DFT)
+$$\int_{\mathbb{R}^d} |f(x)|^2 dx = \frac{1}{(2\pi)^d} \int_{\mathbb{R}^d} |\hat{f}(w)|^2 dw$$
 
-For digital signals with $N$ samples:
+**Proof:** 
+$$\begin{align}
+(2\pi)^d \int_{\mathbb{R}^d} |f(x)|^2 dx &= (2\pi)^d \int_{\mathbb{R}^d} f(x) \overline{f(x)} dx \\
+&= (2\pi)^d \int_{\mathbb{R}^d} f(x) \overline{F^{-1}Ff(x)} dx \\
+&= \langle f, F^{\star}Ff \rangle \\
+&= \langle \hat{f}, \hat{f} \rangle
+\end{align}$$
+**Corollary (Parseval Formula for Laplace Transform):** Let $u, v \in L^1(\mathbb{R}) \cap L^2(\mathbb{R})$, then:
 
-$$X[k] = \sum_{n=0}^{N-1} x[n] e^{-i2\pi kn/N}$$
+$$\frac{1}{2\pi} \langle Lu, Lv \rangle = \frac{1}{2\pi} \int_{-\infty}^{\infty} F[u(\cdot)e^{-s_1\cdot}](s_2) F[v(\cdot)e^{-s_1\cdot}](s_2) ds_2 = (e^{-2s_1\cdot}u(\cdot), v(\cdot))$$
 
-The DFT is efficiently computed using the Fast Fourier Transform (FFT) algorithm.
+### Fourier Transform of Real Functions
+
+**Lemma:** Let $f \in L^1(\mathbb{R}^d)$ be a real function, then:
+
+$$\hat{f}(-w) = \overline{\hat{f}(w)}$$
+
+That is, when $f$ is real, then $\Re\hat{f}$ is even and $\Im\hat{f}$ is odd.
+
+**Proof:**
+$$\begin{align}
+\hat{f}(-w) &= \int_{\mathbb{R}^d} f(x) e^{iw \cdot x} dx = \overline{\int_{\mathbb{R}^d} f(x) e^{-iw \cdot x} dx} \\
+&= \overline{\hat{f}(w)}
+\end{align}$$
+
+**Corollary:** If $f \in L^1(\mathbb{R}^d)$ is a real function, and $\lim_{|w| \to \infty} \hat{f}(w) = A$, then $A$ is real.
+
+**Proof:**
+$$A = \lim_{|w| \to \infty} \hat{f}(w) = \lim_{|w| \to \infty} \hat{f}(-w) = \overline{A}$$
+
+### Derivation of Distribution
+
+**Definition:** Let $f \in D'(\mathbb{R}^d)$, the distributional derivative of $f$ is defined by:
+
+$$\langle \partial^{\alpha} f, \phi \rangle = (-1)^{|\alpha|} \langle f, \partial^{\alpha} \phi \rangle$$
+
+for any $\phi \in C_0^{\infty}(\mathbb{R}^d)$.
+
+**Example 1:** Let $f(x) = \delta(x)$, then:
+
+$$\langle \partial^{\alpha} \delta, \phi \rangle = (-1)^{|\alpha|} \langle \delta, \partial^{\alpha} \phi \rangle = (-1)^{|\alpha|} \partial^{\alpha} \phi(0)$$
+
+**Example 2:**
+$$\langle \frac{d}{dx} \text{sign}(x), \phi \rangle = -\langle \text{sign}(x), \frac{d}{dx} \phi \rangle = 2\phi(0) = \langle 2\delta, \phi \rangle$$
+
+Removing test function yields $\frac{d}{dx} \text{sign}(x) = 2\delta(x)$.
+
+So:
+$$\frac{d^2}{dx^2} e^{ik|x|} = \frac{d}{dx}(ike^{ik|x|} \text{sign}(x)) = -k^2 e^{ik|x|} + 2ik\delta(x)$$
+
+From this we can obtain the fundamental solution of 1D Helmholtz equation:
+$$\frac{d^2}{dx^2} e^{ik|x|} + k^2 e^{ik|x|} = 2ik\delta(x)$$
+## Sommerfeld Integral Path
+
+**Jordan Lemma:** Let $f(z)$ be a complex function, and $a > 0$ be a positive number. If $f(z)$ is continuous on the upper half plane $\text{Im}(z) \geq 0$ and $|f(z)| \leq M_R$ for $z \in C_R$, then:
+
+$$\int_{C_R} f(z) e^{iaz} dz \leq \frac{\pi}{a} M_R$$
+
+where $C_R$ is the semi-circle $|z| = R$ in the upper half plane.
+
+**Corollary (Jordan Lemma for Lower Half Plane):** Let $f(z)$ be a complex function, and $a < 0$ be a negative number. If $f(z)$ is continuous on the lower half plane $\text{Im}(z) \leq 0$ and $|f(z)| \leq M_R$ for $z \in C_R$, then:
+
+$$\int_{C_R} f(z) e^{iaz} dz \leq \frac{\pi}{|a|} M_R$$
+
+where $C_R$ is the semi-circle $|z| = R$ in the lower half plane.
+
+**Weyl Identity** ([note](https://engineering.purdue.edu/wcchew/ece604f19/Lecture%20Notes/Lect35.pdf)):
+
+$$\frac{e^{ik_0 r}}{r} = \frac{i}{2\pi} \int_{\mathbb{R}^2} dk_x dk_y \frac{e^{ik_x x + ik_y y + ik_z |z|}}{k_z}$$
+
+where $k_z = \sqrt{k_0^2 - k_x^2 - k_y^2}$.
