@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="note-title">Note - pans</title>
+    <title id="note-title">Note - Pans</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -15,15 +13,16 @@
             }
         };
     </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="nav-container">
-                <h1 class="logo"><a href="index.html">pans</a></h1>
+                <span class="logo"><a href="index.html">Pans</a></span>
                 <ul class="nav-menu">
                     <li><a href="index.html#about">About</a></li>
-                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#news">News</a></li>
                     <li><a href="index.html#publications">Publications</a></li>
                     <li><a href="index.html#notes">Notes</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
@@ -38,9 +37,9 @@
                 <div class="note-navigation">
                     <a href="index.html#notes" class="back-to-notes">← Back to Notes</a>
                 </div>
-                
+
                 <article class="note-content" id="note-content">
-                    <div class="loading">Loading note content...</div>
+                    <div class="loading">Loading note content…</div>
                 </article>
             </div>
         </section>
@@ -48,45 +47,41 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 pans. All rights reserved.</p>
+            <p>&copy; 2025 Pans. Last updated: March 2026.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        // Load note content when page loads
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const noteFile = urlParams.get('file');
             const noteTitle = urlParams.get('title');
-            
+
             if (noteFile && noteTitle) {
                 loadNoteContent(noteFile, noteTitle);
             } else {
-                document.getElementById('note-content').innerHTML = 
+                document.getElementById('note-content').innerHTML =
                     '<div class="error">Note not found. <a href="index.html#notes">Return to notes</a></div>';
             }
         });
 
         function loadNoteContent(filePath, title) {
-            // Update page title
-            document.getElementById('note-title').textContent = title + ' - pans';
-            
-            // Load and render markdown content
+            document.getElementById('note-title').textContent = title + ' - Pans';
+
             fetch(filePath)
                 .then(response => response.text())
                 .then(markdown => {
                     const html = simpleMarkdownToHtml(markdown);
                     document.getElementById('note-content').innerHTML = html;
-                    
-                    // Re-render MathJax if available
+
                     if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
                         MathJax.typesetPromise([document.getElementById('note-content')]);
                     }
                 })
                 .catch(error => {
                     console.error('Error loading note:', error);
-                    document.getElementById('note-content').innerHTML = 
+                    document.getElementById('note-content').innerHTML =
                         '<div class="error">Failed to load note content. <a href="index.html#notes">Return to notes</a></div>';
                 });
         }
