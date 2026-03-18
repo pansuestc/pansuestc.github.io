@@ -7,6 +7,12 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    --header-height: 58px;
+    --layout-top-spacing: 38px;
+    --sticky-offset: calc(var(--header-height) + 28px);
+    --link-color: #2f7ea1;
+    --link-hover-color: #1f5f7d;
+    --profile-photo-size: 210px;
 }
 
 body {
@@ -17,12 +23,12 @@ body {
 }
 
 a {
-    color: #52adc8;
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
-    color: #2c7f99;
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -47,7 +53,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 58px;
+    height: var(--header-height);
 }
 
 .logo {
@@ -96,7 +102,7 @@ header {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     gap: 44px;
-    padding-top: 38px;
+    padding-top: var(--layout-top-spacing);
     padding-bottom: 50px;
 }
 
@@ -106,12 +112,12 @@ header {
 
 .profile-card {
     position: sticky;
-    top: 86px;
+    top: var(--sticky-offset);
 }
 
 .profile-photo-wrapper {
-    width: 210px;
-    height: 210px;
+    width: var(--profile-photo-size);
+    height: var(--profile-photo-size);
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid #f2f3f3;
@@ -211,6 +217,16 @@ header {
 
 .bio p {
     margin-bottom: 0.85rem;
+}
+
+.profile-card .bio {
+    margin-bottom: 1rem;
+}
+
+.profile-card .bio p {
+    color: #6f777d;
+    font-size: 0.86rem;
+    margin-bottom: 0.65rem;
 }
 
 .news-list {
@@ -496,6 +512,10 @@ footer {
 }
 
 @media (max-width: 920px) {
+    html {
+        --profile-photo-size: 150px;
+    }
+
     .page-layout {
         grid-template-columns: 1fr;
         gap: 26px;
@@ -504,11 +524,6 @@ footer {
 
     .profile-card {
         position: static;
-    }
-
-    .profile-photo-wrapper {
-        width: 150px;
-        height: 150px;
     }
 
     .profile-links {
