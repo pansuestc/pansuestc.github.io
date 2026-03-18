@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pans - PhD Student in Computational Mathematics</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -15,20 +13,21 @@
             }
         };
     </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="nav-container">
-                <h1 class="logo">Pans</h1>
+                <span class="logo">Pans</span>
                 <ul class="nav-menu">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#research">Research</a></li>
+                    <li><a href="#news">News</a></li>
                     <li><a href="#publications">Publications</a></li>
                     <li><a href="#notes">Notes</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <div class="hamburger">
+                <div class="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -38,145 +37,161 @@
     </header>
 
     <main>
+        <!-- Profile / About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="profile-grid">
+                    <div class="profile-photo-col">
+                        <div class="profile-photo-wrapper">
+                            <img src="photo.jpg" alt="Profile photo of Pans" class="profile-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                            <div class="profile-photo-placeholder" aria-hidden="true">
+                                <span>Photo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-info-col">
+                        <h1 class="profile-name">Pans</h1>
+                        <p class="profile-title">PhD Student in Computational Mathematics</p>
+                        <p class="profile-affiliation">
+                            School of Mathematical Sciences<br>
+                            University of Electronic Science and Technology of China (UESTC)
+                        </p>
+                        <div class="profile-links">
+                            <a href="mailto:your.email@uestc.edu.cn" class="profile-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                Email
+                            </a>
+                            <a href="#" class="profile-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="profile-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                Google Scholar
+                            </a>
+                            <a href="#" class="profile-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                CV
+                            </a>
+                        </div>
+
+                        <div class="bio">
+                            <p>I am a PhD student specializing in computational mathematics, with a focus on boundary integral equation methods and mathematical analysis. My research lies at the intersection of applied mathematics and scientific computing, with applications in wave scattering and electromagnetic problems.</p>
+                            <p>My current work involves developing and analyzing numerical methods for solving Helmholtz equations in layered media using boundary integral equation formulations, including Fourier/spectral representations of Green's functions.</p>
+                        </div>
+
+                        <div class="research-interests">
+                            <h2>Research Interests</h2>
+                            <ul>
+                                <li>Boundary Integral Equation Methods</li>
+                                <li>Numerical Analysis &amp; Scientific Computing</li>
+                                <li>Wave Scattering in Layered Media</li>
+                                <li>Spectral Methods &amp; Fourier Analysis</li>
+                                <li>Differential Operators on Riemannian Manifolds</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="news">
+            <div class="container">
+                <h2 class="section-title">News</h2>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">[Dec 2025]</span>
+                        <span class="news-text">Posted new notes on the Fourier representation of Green's functions for layered media.</span>
+                    </li>
+                    <li>
+                        <span class="news-date">[Oct 2025]</span>
+                        <span class="news-text">Working on boundary integral equation methods for three-layer Helmholtz problems.</span>
+                    </li>
+                    <li>
+                        <span class="news-date">[Sep 2025]</span>
+                        <span class="news-text">Added notes on generalized differential operators on Riemannian manifolds and asymptotic behavior of kernels.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="publications">
+            <div class="container">
+                <h2 class="section-title">Publications</h2>
+                <div class="publications-list">
+                    <p class="publications-note">* denotes equal contribution. Publications will be updated as research progresses.</p>
+
+                    <h3 class="pub-year">Preprints</h3>
+                    <ol class="pub-list" reversed>
+                        <li class="pub-entry">
+                            <div class="pub-title">Boundary Integral Equation Methods for Helmholtz Equations in Layered Media</div>
+                            <div class="pub-authors"><strong>Pans</strong></div>
+                            <div class="pub-venue"><em>In preparation</em>, 2026.</div>
+                        </li>
+                    </ol>
+
+                    <h3 class="pub-year">Conference Presentations</h3>
+                    <ul class="pub-list">
+                        <li class="pub-entry">
+                            <em>Conference presentations and invited talks will be listed here.</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notes Section -->
         <section id="notes" class="notes">
             <div class="container">
-                <h2>Notes</h2>
+                <h2 class="section-title">Notes</h2>
                 <div class="notes-content">
-                    <p>A collection of mathematical notes, tutorials, and research observations in markdown format.</p>
-                    
+                    <p class="notes-desc">A collection of mathematical notes and research observations.</p>
+
                     <div class="notes-controls">
                         <input type="text" id="notes-search" placeholder="Search notes..." class="search-input">
                         <select id="notes-filter" class="filter-select">
                             <option value="all">All Categories</option>
                             <option value="analysis">Mathematical Analysis</option>
+                            <option value="analysis-geometry">Analysis &amp; Geometry</option>
+                            <option value="analysis-bie">BIE Methods</option>
                             <option value="algorithms">Algorithms</option>
                             <option value="tutorials">Tutorials</option>
-                            <option value="research">Research Notes</option>
                         </select>
                     </div>
-                    
+
                     <div class="notes-grid" id="notes-grid">
-                        <!-- Notes will be loaded dynamically -->
-                        <div class="loading">Loading notes...</div>
+                        <div class="loading">Loading notes…</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="hero" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Pans</h1>
-                    <h2>PhD Student in Computational Mathematics</h2>
-                    <p>Researching mathematical analysis and algorithms related to computational mathematics</p>
-                    <div class="hero-buttons">
-                        <a href="#research" class="btn btn-primary">View Research</a>
-                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about">
-            <div class="container">
-                <h2>About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>I am a PhD student specializing in computational mathematics with a focus on mathematical analysis and algorithm development. My research interests lie at the intersection of theoretical mathematics and practical computational applications.</p>
-                        
-                        <p>My work involves developing and analyzing algorithms for complex mathematical problems, with particular emphasis on numerical methods, optimization techniques, and their applications in various fields of science and engineering.</p>
-                        
-                        <h3>Research Interests</h3>
-                        <ul>
-                            <li>Mathematical Analysis</li>
-                            <li>Numerical Analysis</li>
-                            <li>Algorithm Design and Analysis</li>
-                            <li>Computational Mathematics</li>
-                            <li>Optimization Theory</li>
-                            <li>Scientific Computing</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="research" class="research">
-            <div class="container">
-                <h2>Research</h2>
-                <div class="research-grid">
-                    <div class="research-item">
-                        <h3>Numerical Methods for Differential Equations</h3>
-                        <p>Developing efficient numerical schemes for solving partial differential equations with applications in physics and engineering. Focus on stability analysis and convergence properties.</p>
-                        <div class="math-example">
-                            $$\frac{\partial u}{\partial t} = \alpha \nabla^2 u + f(x,t)$$
-                        </div>
-                    </div>
-                    
-                    <div class="research-item">
-                        <h3>Optimization Algorithms</h3>
-                        <p>Research on convergence analysis of optimization algorithms, particularly for non-convex problems and large-scale applications.</p>
-                        <div class="math-example">
-                            $$\min_{x \in \mathbb{R}^n} f(x) \text{ subject to } g(x) \leq 0$$
-                        </div>
-                    </div>
-                    
-                    <div class="research-item">
-                        <h3>Computational Complexity Analysis</h3>
-                        <p>Analyzing the computational complexity of mathematical algorithms and developing more efficient approaches for solving large-scale problems.</p>
-                        <div class="math-example">
-                            $$T(n) = O(n \log n)$$
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="publications" class="publications">
-            <div class="container">
-                <h2>Publications</h2>
-                <div class="publications-list">
-                    <div class="publication-item">
-                        <h3>Recent Publications</h3>
-                        <p><em>Publications will be updated as research progresses.</em></p>
-                        <p>Currently working on several manuscripts related to numerical analysis and computational algorithms.</p>
-                    </div>
-                    
-                    <div class="publication-item">
-                        <h3>Conference Presentations</h3>
-                        <p><em>Conference presentations and talks will be listed here.</em></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- Contact Section -->
         <section id="contact" class="contact">
             <div class="container">
-                <h2>Contact</h2>
-                <div class="contact-content">
-                    <p>I'm always interested in discussing research collaborations and opportunities in computational mathematics.</p>
-                    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <h3>Email</h3>
-                            <p><a href="mailto:your.email@university.edu">your.email@university.edu</a></p>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <h3>Office</h3>
-                            <p>Department of Mathematics<br>
-                            Your University<br>
-                            Office Number</p>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <h3>Links</h3>
-                            <p>
-                                <a href="#" class="contact-link">ORCID</a> |
-                                <a href="#" class="contact-link">Google Scholar</a> |
-                                <a href="#" class="contact-link">ResearchGate</a>
-                            </p>
-                        </div>
-                    </div>
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-body">
+                    <p>I am always open to research discussions and collaborations. Feel free to reach out by email.</p>
+                    <table class="contact-table">
+                        <tr>
+                            <td class="contact-label">Email</td>
+                            <td><a href="mailto:your.email@uestc.edu.cn">your.email@uestc.edu.cn</a></td>
+                        </tr>
+                        <tr>
+                            <td class="contact-label">Office</td>
+                            <td>School of Mathematical Sciences, UESTC</td>
+                        </tr>
+                        <tr>
+                            <td class="contact-label">Links</td>
+                            <td>
+                                <a href="#">Google Scholar</a> &nbsp;|&nbsp;
+                                <a href="#">GitHub</a> &nbsp;|&nbsp;
+                                <a href="#">ORCID</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
@@ -184,7 +199,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Pans. All rights reserved.</p>
+            <p>&copy; 2025 Pans. Last updated: March 2026.</p>
         </div>
     </footer>
 
