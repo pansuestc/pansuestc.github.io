@@ -61,5 +61,14 @@
     "file": "notes/SpecteralRep.md",
     "date": "2025-12-07",
     "tags": ["analysis", "bie"]
+  },
+  {
+    "id": "ssh-lan-tailscale-auto-switch",
+    "title": "Windows 11 SSH Auto Switch between LAN and Tailscale IP",
+    "category": "tutorials",
+    "description": "Configure Windows 11 to automatically choose LAN IP or Tailscale IP for SSH and VS Code Remote connection based on network availability.",
+    "file": "notes/ssh-lan-tailscale-auto-switch.md",
+    "date": "2026-07-07",
+    "tags": ["ssh", "windows", "tailscale", "powershell", "vscode"]
   }
 ]
